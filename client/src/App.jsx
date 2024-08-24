@@ -5,10 +5,12 @@ import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import DashBoard from "./pages/DashBoard";
 import Projects from "./pages/Projects";
+import Header from "./components/Header";
 
 const App = () => {
   return (
     <div className="app">
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
