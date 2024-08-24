@@ -1,6 +1,8 @@
+import { customErrorHandler } from "../middlewares/customErrorHandler.js";
 import User from "./../models/userModel.js";
 import bcrypt from "bcrypt";
-export const signup = async (req, res) => {
+
+export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
   if (
     !username ||
@@ -10,9 +12,7 @@ export const signup = async (req, res) => {
     !email === "" ||
     !password === ""
   ) {
-    return res.status(400).json({
-      message: "All fields are required",
-    });
+    next(customErrorHandler(400, "All feilds are required"));
   }
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -22,6 +22,6 @@ export const signup = async (req, res) => {
     return res.status(200).json({ message: "SignUp Successfull" });
   } catch (error) {
     console.log(error);
-    return res.status(400).json({ success: false, message: error.message });
+    next(error);
   }
 };
