@@ -1,7 +1,22 @@
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import About from "./pages/About";
+import DashBoard from "./pages/DashBoard";
+import Projects from "./pages/Projects";
+
 const App = () => {
   return (
-    <div className="bg-red-700 w-3 h-3">
-      <h1 className="text-yellow-300">App</h1>
+    <div className="app">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/projects" element={<Projects />} />
+      </Routes>
     </div>
   );
 };
